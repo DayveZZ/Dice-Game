@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Varela&display=swap");
+
+body {
+  font-family: "Varela", sans-serif;
+}

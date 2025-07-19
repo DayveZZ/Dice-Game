@@ -1,4 +1,4 @@
-function StartGame() {
+function Gameplay() {
   return (
     <div className="flex items-center justify-evenly h-screen bg-gray-100">
       <img src="src\assets\dices.png" className="w-2/5" />
@@ -12,4 +12,4 @@ function StartGame() {
     </div>
   );
 }
-export default StartGame;
+export default Gameplay;
