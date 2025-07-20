@@ -1,6 +1,6 @@
 function Rules() {
   return (
-    <div className="w-4/5 bg-grey-200 shadow-lg rounded-md px-3 py-2">
+    <div className="w-3/5 bg-grey-200 shadow-lg rounded-md px-3 py-2 ml-10">
       <h2 className="font-bold uppercase">How to play dice game</h2>
       <ul>
         <li>1. Select any number</li>
