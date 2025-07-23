@@ -1,6 +1,11 @@
-import React from "react";
+import { useState } from "react";
 
 const SelectNumbers = () => {
+  const arrNumber = [1, 2, 3, 4, 5, 6];
+  const [selectedNumber, setSelectedNumber] = useState();
+
+  console.log(selectedNumber);
+
   return (
     <div className="text-end flex gap-10">
       <h1 className="text-red-600">
@@ -8,12 +13,20 @@ const SelectNumbers = () => {
       </h1>
       <div>
         <ul className="selectNumber flex items-center justify-center space-x-4 mb-5">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
+          {arrNumber.map((value, index) => (
+            <li
+              // isSelected={value === selectedNumber}
+              key={index}
+              onClick={() => setSelectedNumber(value)}
+              className={
+                selectedNumber === value
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
+              }
+            >
+              {value}
+            </li>
+          ))}
         </ul>
         <h1 className="font-semibold">Select Number</h1>
       </div>

@@ -1,10 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import clickSound from "../assets/click_1.wav";
 
 const RollDice = () => {
+  const [currentDice, setCurrentDice] = useState(1);
+
+  const generateRandomDice = (min, max) => {
+    console.log(Math.floor(Math.random() * (max - min + 1) + min));
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-3/5">
-      <button>
+      <button onClick={() => generateRandomDice(1, 6)}>
         <img src="src\assets\dice_1.png" />
       </button>
       <h1 className="text-md">Click on the Dice to roll</h1>
