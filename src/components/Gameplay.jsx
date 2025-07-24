@@ -6,6 +6,8 @@ import SelectNumbers from "./SelectNumbers";
 import Score from "./Score";
 
 const Gameplay = ({ toggle }) => {
+  const [selectedNumber, setSelectedNumber] = useState();
+
   const [show, setShow] = useState(false);
   new Audio(clickSound).play();
 
@@ -14,7 +16,10 @@ const Gameplay = ({ toggle }) => {
       <div className="flex justify-between">
         <Score />
 
-        <SelectNumbers />
+        <SelectNumbers
+          selectedNumber={selectedNumber}
+          setSelectedNumber={setSelectedNumber}
+        />
       </div>
 
       <RollDice />

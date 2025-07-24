@@ -5,15 +5,18 @@ const RollDice = () => {
   const [currentDice, setCurrentDice] = useState(1);
 
   const generateRandomDice = (min, max) => {
-    console.log(Math.floor(Math.random() * (max - min + 1) + min));
-
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
   };
 
+  const roleDices = () => {
+    const randomNumber = generateRandomDice(1, 7);
+    setCurrentDice(() => randomNumber);
+  };
+  console.log(currentDice);
   return (
     <div className="flex flex-col items-center justify-center h-3/5">
-      <button onClick={() => generateRandomDice(1, 6)}>
-        <img src="src\assets\dice_1.png" />
+      <button onClick={roleDices}>
+        <img src={`src/assets/dice_${currentDice}.png`} />
       </button>
       <h1 className="text-md">Click on the Dice to roll</h1>
       <button
