@@ -1,18 +1,7 @@
-import { useState } from "react";
+// import { useState } from "react";
 import clickSound from "../assets/click_1.wav";
 
-const RollDice = () => {
-  const [currentDice, setCurrentDice] = useState(1);
-
-  const generateRandomDice = (min, max) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-
-  const roleDices = () => {
-    const randomNumber = generateRandomDice(1, 7);
-    setCurrentDice(() => randomNumber);
-  };
-  console.log(currentDice);
+const RollDice = ({ currentDice, roleDices }) => {
   return (
     <div className="flex flex-col items-center justify-center h-3/5">
       <button onClick={roleDices}>

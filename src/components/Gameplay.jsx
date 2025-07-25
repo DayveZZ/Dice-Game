@@ -6,15 +6,32 @@ import SelectNumbers from "./SelectNumbers";
 import Score from "./Score";
 
 const Gameplay = ({ toggle }) => {
+  const [score, setScore] = useState(0);
   const [selectedNumber, setSelectedNumber] = useState();
+  const [currentDice, setCurrentDice] = useState(1);
 
   const [show, setShow] = useState(false);
   new Audio(clickSound).play();
 
+  const generateRandomDice = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+
+  const roleDices = () => {
+    const randomNumber = generateRandomDice(1, 7);
+
+    setCurrentDice(() => randomNumber);
+
+    if (selectedNumber === randomNumber) {
+      setScore((prev) => prev + randomNumber);
+    } else {
+      setScore((prev) => prev - randomNumber);
+    }
+  };
   return (
     <div className=" h-screen bg-gray-100 p-10">
       <div className="flex justify-between">
-        <Score />
+        <Score score={score} />
 
         <SelectNumbers
           selectedNumber={selectedNumber}
@@ -22,7 +39,7 @@ const Gameplay = ({ toggle }) => {
         />
       </div>
 
-      <RollDice />
+      <RollDice currentDice={currentDice} roleDices={roleDices} />
 
       <div className="flex">
         <button
