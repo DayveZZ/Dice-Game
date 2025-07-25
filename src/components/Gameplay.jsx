@@ -9,6 +9,7 @@ const Gameplay = ({ toggle }) => {
   const [score, setScore] = useState(0);
   const [selectedNumber, setSelectedNumber] = useState();
   const [currentDice, setCurrentDice] = useState(1);
+  const [error, setError] = useState("");
 
   const [show, setShow] = useState(false);
   new Audio(clickSound).play();
@@ -18,6 +19,11 @@ const Gameplay = ({ toggle }) => {
   };
 
   const roleDices = () => {
+    if (!selectedNumber) {
+      setError("Please select a number to roll the dice.");
+      return;
+    }
+    setError("");
     const randomNumber = generateRandomDice(1, 7);
 
     setCurrentDice(() => randomNumber);
@@ -27,6 +33,14 @@ const Gameplay = ({ toggle }) => {
     } else {
       setScore((prev) => prev - randomNumber);
     }
+
+    setSelectedNumber(undefined);
+  };
+  const restScore = () => {
+    setScore(0);
+    setSelectedNumber(undefined);
+    setCurrentDice(1);
+    new Audio(clickSound).play();
   };
   return (
     <div className=" h-screen bg-gray-100 p-10">
@@ -36,12 +50,19 @@ const Gameplay = ({ toggle }) => {
         <SelectNumbers
           selectedNumber={selectedNumber}
           setSelectedNumber={setSelectedNumber}
+          error={error}
         />
       </div>
 
       <RollDice currentDice={currentDice} roleDices={roleDices} />
+      <button
+        className="w-50 h-12 bg-white px-3 py-2 shadow-lg rounded-md cursor-pointer hover:bg-black hover:text-white transition duration-400"
+        onClick={restScore}
+      >
+        Reset Score
+      </button>
 
-      <div className="flex">
+      <div className="flex absolute bottom-40 ">
         <button
           className="w-50 h-12 shadow-lg px-3 py-2 rounded-md cursor-pointer bg-black text-white hover:bg-white hover:border-white hover:text-black transition duration-400"
           onClick={() => {

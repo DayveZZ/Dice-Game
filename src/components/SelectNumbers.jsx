@@ -1,11 +1,14 @@
-const SelectNumbers = ({ selectedNumber, setSelectedNumber }) => {
+const SelectNumbers = ({ error, selectedNumber, setSelectedNumber }) => {
   const arrNumber = [1, 2, 3, 4, 5, 6];
 
   return (
     <div className="text-end flex gap-10">
-      <h1 className="text-red-600">
+      {/* <h1 className="text-red-600">
         You've not selected a number. Please Select
-      </h1>
+      </h1> */}
+
+      <h1 className="text-red-600">{error}</h1>
+
       <div>
         <ul className="selectNumber flex items-center justify-center space-x-4 mb-5">
           {arrNumber.map((value, index) => (
